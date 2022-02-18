@@ -36,10 +36,13 @@ func Create(ctx context.Context, params *models.CreateUser) (*User, error) {
 	return u, nil
 }
 
-// First 查询
-func First(ctx context.Context, user *User) (*User, error) {
-	if err := db.First(user).Error; err != nil {
-		logrus.WithContext(ctx).Errorf("first failure:[err:%s]", err.Error())
+// Get 查询
+func Get(ctx context.Context, uid uint) (*User, error) {
+	var (
+		user = &User{}
+	)
+	if err := db.First(user, uid).Error; err != nil {
+		logrus.WithContext(ctx).Errorf("get failure:[id:%d,err:%s]", uid, err.Error())
 		return nil, err
 	}
 	return user, nil

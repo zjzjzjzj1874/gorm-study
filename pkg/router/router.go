@@ -15,6 +15,7 @@ func InitRouter() *gin.Engine {
 		v0 := router.Group("/v0")
 		userGroup := v0.Group("/user")
 		userGroup.POST("", user.Create)
+		userGroup.GET("/:id", user.Get)
 	}
 
 	return router
