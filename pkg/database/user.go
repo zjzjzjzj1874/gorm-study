@@ -49,8 +49,8 @@ func Get(ctx context.Context, uid uint) (*User, error) {
 }
 
 // Delete 删除
-func Delete(ctx context.Context, user *User) (int64, error) {
-	result := db.Delete(user)
+func Delete(ctx context.Context, uid uint) (int64, error) {
+	result := db.Delete(&User{}, uid)
 	if err := result.Error; err != nil {
 		logrus.WithContext(ctx).Errorf("delete failure:[err:%s]", err.Error())
 		return 0, err
