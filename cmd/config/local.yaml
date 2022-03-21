@@ -1,0 +1,16 @@
+# settings-dev.yaml
+name: "go-gin"
+port: 8022
+logsAddress: "./logs/"
+debug: true
+
+mysql:
+  name: "root"
+  host: "localhost"
+  port: 3306
+  password: ""
+  dbName: "test"
+
+redis:
+  host: "localhost"
+  port: 6379

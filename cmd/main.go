@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gin-contrib/pprof"
+	"github.com/zjzjzjzj1874/gorm-study/cmd/global"
 	"github.com/zjzjzjzj1874/gorm-study/pkg/database"
 	"github.com/zjzjzjzj1874/gorm-study/pkg/router"
 )
@@ -9,10 +10,13 @@ import (
 func main() {
 	defer database.Close() // 关闭数据库连接
 
+	global.Init() // 初始化配置文件
+
 	gin := router.InitRouter() // 初始化路由
 
-	pprof.Register(gin) // pprof分析路由开启
-
+	if global.GlobalConfig.Debug {
+		pprof.Register(gin) // pprof分析路由开启
+	}
 	if err := gin.Run(":8000"); err != nil {
 		panic(err)
 	}
