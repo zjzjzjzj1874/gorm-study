@@ -24,6 +24,7 @@ type MysqlConfig struct {
 type RedisConfig struct {
 	Addr string `yaml:"addr"`
 	Pwd  string `yaml:"pwd"`
+	DB   int    `yaml:"db"`
 }
 
 var (

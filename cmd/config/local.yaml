@@ -14,3 +14,4 @@ mysql:
 redis:
   addr: "localhost:6379"
   pwd: ""
+  db: 0
