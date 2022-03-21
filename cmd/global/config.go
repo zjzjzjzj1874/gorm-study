@@ -37,11 +37,13 @@ func Init() {
 	if err := v.ReadInConfig(); err != nil {
 		panic(err)
 	}
+
 	serverConfig := ServerConfig{}
 	//给serverConfig初始值
 	if err := v.Unmarshal(&serverConfig); err != nil {
 		panic(err)
 	}
+
 	// 传递给全局变量
 	GlobalConfig = serverConfig
 }
