@@ -1,10 +1,11 @@
 package user
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/zjzjzjzj1874/gorm-study/pkg/database"
 	"net/http"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
+	"github.com/zjzjzjzj1874/gorm-study/pkg/database"
 )
 
 func Delete(c *gin.Context) {

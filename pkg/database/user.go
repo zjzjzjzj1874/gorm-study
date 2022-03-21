@@ -2,12 +2,12 @@ package database
 
 import (
 	"context"
-	"github.com/zjzjzjzj1874/gorm-study/pkg/models"
 	"time"
 
 	"database/sql"
 	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"
+	"github.com/zjzjzjzj1874/gorm-study/pkg/models"
 )
 
 type User struct {

@@ -1,10 +1,11 @@
 package user
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/zjzjzjzj1874/gorm-study/pkg/database"
 	"net/http"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
+	"github.com/zjzjzjzj1874/gorm-study/pkg/database"
 )
 
 func Get(c *gin.Context) {
@@ -18,7 +19,7 @@ func Get(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{})
 		return
 	}
-	
+
 	u, err := database.Get(c, uint(uid))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{})

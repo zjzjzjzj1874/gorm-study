@@ -1,11 +1,12 @@
 package user
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"github.com/zjzjzjzj1874/gorm-study/pkg/database"
 	"github.com/zjzjzjzj1874/gorm-study/pkg/models"
-	"net/http"
 )
 
 func Create(c *gin.Context) {
