@@ -22,8 +22,8 @@ type MysqlConfig struct {
 }
 
 type RedisConfig struct {
-	Host string `yaml:"host"`
-	Port int    `yaml:"port"`
+	Addr string `yaml:"addr"`
+	Pwd  string `yaml:"pwd"`
 }
 
 var (
@@ -47,3 +47,5 @@ func Init() {
 	// 传递给全局变量
 	GlobalConfig = serverConfig
 }
+
+// 这里使用viper做解析,后面尝试	"gopkg.in/yaml.v2"来解析,err = yaml.Unmarshal(contents, &kv):contents为二进制文件,kv为一个map
