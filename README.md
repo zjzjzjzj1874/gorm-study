@@ -7,6 +7,7 @@ gorm
 - mysql
 - yaml
 - elastic
+- kafka
 
 # todo list
 

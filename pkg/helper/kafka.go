@@ -26,7 +26,7 @@ func init() {
 	_ = KafkaClientConn.SetReadDeadline(time.Now().Add(10 * time.Second))
 }
 
-// 可以启动多个kafka的writer和reader.By the way:如果是以reader或者writer启动的,失败后请记得调用Close的方法
+// 可以启动多个kafka的writer和reader.By the way:如果是以reader或者writer启动的,失败或者用完后请记得调用Close的方法
 func init() {
 	KafkaWriter = &kafka.Writer{
 		Addr:     kafka.TCP(""),
