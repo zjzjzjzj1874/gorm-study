@@ -3,13 +3,11 @@ package main
 import (
 	"github.com/gin-contrib/pprof"
 	"github.com/zjzjzjzj1874/gorm-study/cmd/global"
-	"github.com/zjzjzjzj1874/gorm-study/pkg/database"
+	_ "github.com/zjzjzjzj1874/gorm-study/pkg/database"
 	"github.com/zjzjzjzj1874/gorm-study/pkg/router"
 )
 
 func main() {
-	defer database.Close() // 关闭数据库连接
-
 	global.Init() // 初始化配置文件
 
 	gin := router.InitRouter() // 初始化路由

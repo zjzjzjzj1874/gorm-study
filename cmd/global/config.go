@@ -2,6 +2,7 @@ package global
 
 import (
 	"github.com/spf13/viper"
+	"gorm.io/gorm/logger"
 )
 
 type ServerConfig struct {
@@ -14,11 +15,11 @@ type ServerConfig struct {
 }
 
 type MysqlConfig struct {
-	Host     string `yaml:"host"`
-	Port     int    `yaml:"port"`
-	Name     string `yaml:"name"`
-	Password string `yaml:"password"`
-	DBName   string `yaml:"dbName"`
+	Endpoint      string          // mysql endpoint => "root:123456@tcp(localhost:3306)/scaffold?charset=utf8&parseTime=True&loc=Local",
+	LogLevel      logger.LogLevel `json:",default=4,options=[1,2,3,4]"` // 日志等级
+	SlowThreshold int             `json:",default=200"`                 // 慢sql判断条件（单位毫秒）
+	LogPath       string          `json:",default=./logs/sql.log"`      // 日志文件
+	Colorful      bool            `json:",optional"`                    // 彩色打印
 }
 
 type RedisConfig struct {

@@ -5,9 +5,9 @@ import (
 	"time"
 
 	"database/sql"
-	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"
 	"github.com/zjzjzjzj1874/gorm-study/pkg/models"
+	"gorm.io/gorm"
 )
 
 type User struct {
@@ -29,7 +29,7 @@ func Create(ctx context.Context, params *models.CreateUser) (*User, error) {
 		Email:   params.Email,
 		Address: params.Address,
 	}
-	if err := db.Create(u).Error; err != nil {
+	if err := gormDB.Create(u).Error; err != nil {
 		logrus.WithContext(ctx).Errorf("creare user failure:[params:%+v,err:%s]", params, err.Error())
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func Get(ctx context.Context, uid uint) (*User, error) {
 	var (
 		user = &User{}
 	)
-	if err := db.First(user, uid).Error; err != nil {
+	if err := gormDB.First(user, uid).Error; err != nil {
 		logrus.WithContext(ctx).Errorf("get failure:[id:%d,err:%s]", uid, err.Error())
 		return nil, err
 	}
@@ -50,7 +50,7 @@ func Get(ctx context.Context, uid uint) (*User, error) {
 
 // Delete 删除
 func Delete(ctx context.Context, uid uint) (int64, error) {
-	result := db.Delete(&User{}, uid)
+	result := gormDB.Delete(&User{}, uid)
 	if err := result.Error; err != nil {
 		logrus.WithContext(ctx).Errorf("delete failure:[err:%s]", err.Error())
 		return 0, err
