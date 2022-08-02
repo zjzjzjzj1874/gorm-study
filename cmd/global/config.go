@@ -1,17 +1,20 @@
 package global
 
 import (
+	"github.com/zjzjzjzj1874/gorm-study/pkg/helper/prometheus"
+
 	"github.com/spf13/viper"
 	"gorm.io/gorm/logger"
 )
 
 type ServerConfig struct {
-	Name        string      `yaml:"name"` // 服务名
-	Port        int         `yaml:"port"` // 端口
-	MysqlInfo   MysqlConfig `yaml:"mysql"`
-	RedisInfo   RedisConfig `yaml:"redis"`
-	LogsAddress string      `yaml:"logsAddress"`
-	Debug       bool        `yaml:"debug"` // 调试模式
+	Name        string            `yaml:"name"` // 服务名
+	Port        int               `yaml:"port"` // 端口
+	MysqlInfo   MysqlConfig       `yaml:"mysql"`
+	RedisInfo   RedisConfig       `yaml:"redis"`
+	Prometheus  prometheus.Config `yaml:",optional"`
+	LogsAddress string            `yaml:"logsAddress"`
+	Debug       bool              `yaml:"debug"` // 调试模式
 }
 
 type MysqlConfig struct {
@@ -48,6 +51,8 @@ func Init() {
 
 	// 传递给全局变量
 	GlobalConfig = serverConfig
+
+	prometheus.StartAgent(serverConfig.Prometheus)
 }
 
 // 这里使用viper做解析,后面尝试	"gopkg.in/yaml.v2"来解析,err = yaml.Unmarshal(contents, &kv):contents为二进制文件,kv为一个map
